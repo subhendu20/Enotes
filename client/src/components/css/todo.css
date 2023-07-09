@@ -1,0 +1,79 @@
+.todo{
+          width: 100%;
+          height:auto;
+          display:flex;
+          flex-direction: row;
+          background-color: rgb(15, 15, 15);
+          padding: 10px;
+
+          margin: 20px auto;
+          box-shadow:  rgba(94, 216, 83, 0.12) 0px 2px 4px 0px, rgba(44, 189, 39, 0.32) 0px 2px 16px 0px;
+}
+.todo span{
+          width: 20%;
+          padding:10px;
+          font-size: 20px;
+          color:white;
+          
+
+}
+.todo span.title{
+          color:rgb(31, 156, 31);
+          font-size: 20px;
+          font-weight: 300;
+}
+
+
+.todo span.description{
+          width: 40%;
+          font-size: 15px;
+
+
+}
+.todo span.button button{
+          padding:10px;
+          font-size: 15px;
+          border-radius: 5px;
+         
+          border: none;
+          transition: 0.2s;
+
+}
+.todo span.button button.done:hover{
+          background-color: rgb(20, 102, 77);
+          color: white;
+}
+.todo span.button button.done{
+          background-color: green;
+          color: black;
+          pointer-events: none;
+
+          
+}
+.todo span.button button.pending{
+          background-color: rgb(33, 173, 138);
+          color: black;
+
+}
+.todo span.button button.pending:hover{
+          background-color: rgb(63, 230, 180);
+          color: rgb(7, 7, 7);
+
+}
+@media (max-width:600px){
+          .todo span{
+                    font-size: 15px;
+          }
+          .todo span.button button{
+                    font-size: 10px;
+          }
+          .todo span.description{
+                    width: 30%;
+                    font-size: 10px;
+          }
+          .todo span.duedate{
+                    width: 30%;
+                    font-size: 15px;
+          }
+
+}

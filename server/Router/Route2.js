@@ -22,12 +22,14 @@ router.use(cors({
 // ---------------------------------post note--------------------------------//
 router.post('/postnote', async (req, res) => {
           try {
-                    const { title, description, date } = req.body
+                    const { title, description, date, member } = req.body
+
                     const getcookie = await req.cookies.signintoken
 
                     if (!getcookie) {
                               return res.status(400).send("you have too logged in first")
                     }
+                    console.log(member)
                     const check = await JWT.verify(getcookie, jwttk)
                     if (!check) {
                               return res.send("you are logged out")
@@ -35,7 +37,7 @@ router.post('/postnote', async (req, res) => {
 
 
                     const newnote = new note({
-                              userid: check, title, description, date
+                              userid: check, title, description, date, members:member ,status:"pending"
                     })
                     newnote.save().then(() => {
                               console.log(newnote)
@@ -51,12 +53,7 @@ router.post('/postnote', async (req, res) => {
                     res.send(error)
 
           }
-          // note.create(req.body).then(()=>{
-          //           res.send("done")
-
-          // }).catch(((e)=>{
-          //           console.log(e)
-          // }))
+        
 
 })
 // ----------------------------------fetch note-------------------------------//
@@ -77,12 +74,7 @@ router.get('/fetchnote', async (req, res) => {
                     res.send(error)
 
           }
-          // const data = await note.find({})
-          // res.send(data)
-
-
-
-
+         
 })
 // --------------------------------update note-------------------------------//
 router.put('/update/:id', async (req, res) => {
@@ -100,6 +92,7 @@ router.put('/update/:id', async (req, res) => {
                     find.title = title
                     find.date=date
                     find.description= description
+                    find.status = find.status
                     
 
                     find.save().then(() => {
@@ -136,7 +129,74 @@ router.post('/delete/:id',async (req, res) => {
           }
 })
 
+//------------------------------------------update status----------------------------------//
+router.post('/updatestatus/:id', async (req, res) => {
+          try {
+                    console.log('j')
+                    
+                    const getcookie = await req.cookies.signintoken
+                    if (!getcookie) {
+                              return res.status(400).send("logged out")
+                              console.log('find')
+                    }
+                    const check = await JWT.verify(getcookie, jwttk)
+                    if (!check) {
+                              return res.send("you are logged out")
+                    }
+                    const find = await note.findById(req.params.id)
+                    
+                    find.status = 'done'
+                    find.title=find.title
+                    find.description=find.description
+                    find.date = find.date
+                    find.members = find.members
 
+                   
+
+                    
+
+                    find.save().then(() => {
+                              res.send(find)
+                    }).catch((e) => {
+                              console.log(e)
+                    })
+
+                    
+          } catch (error) {
+                    console.log(error)
+          }
+})
+//----------------------------------------Status map---------------------------------//
+router.get('/fetchstatus', async (req, res) => {
+          try {
+                    var done = 0
+                    var pending = 0
+                    const getcookie = await req.cookies.signintoken
+                    if (!getcookie) {
+                              return res.status(400).send([{}])
+                    }
+                    const check = await JWT.verify(getcookie, jwttk)
+                    if (!check) {
+                              return res.send("you are logged out")
+                    }
+                    const data = await note.find({ userid: check })
+                    data.forEach(e => {
+                              if(e.status=='pending'){
+                                        pending++;
+                              }
+                              if(e.status=='done'){
+                                        done++;
+
+                              }
+                    });
+                    res.status(200).send({pending:pending,done:done})
+
+          } catch (error) {
+                    res.send(error)
+
+          }
+         
+})
 
 
 

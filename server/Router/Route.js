@@ -17,8 +17,8 @@ router.use(cors({
           methods: ['POST', 'PUT', 'GET','DELETE','OPTIONS', 'HEAD'],
           credentials: true
 }))
-//----------------------------------------------------end points-------------------------------------------------//
 
+//-------------------------------------------sign up-------------------------------------------------------------//
 router.post('/signup', async (req, res) => {
 
           try {
@@ -55,6 +55,34 @@ router.post('/signup', async (req, res) => {
 
 })
 
+//------------------------------------fetch names----------------------------------------//
+
+router.get('/getallnames',async(req,res)=>{
+          try {
+                    const getcookie = await req.cookies.signintoken
+                    var names = []
+                    if (!getcookie) {
+                              return res.status(400).send([{}])
+                    }
+                    const check = await JWT.verify(getcookie, jwttk)
+                    if (!check) {
+                              return res.send("you are logged out")
+                    }
+                    const data = await user.find({})
+                    await data.forEach(e => {
+                              
+                              names.push(e.name)
+                    });
+                    res.status(200).send(names)
+
+          } catch (error) {
+                    res.send(error)
+
+          }
+         
+
+})
+//----------------------------------------log in-------------------------------------------------------------//
 router.post('/login', async (req, res) => {
 
 

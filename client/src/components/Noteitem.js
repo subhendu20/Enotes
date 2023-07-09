@@ -16,13 +16,13 @@ function Noteitem(props) {
   
 
   const[updatevisiblity,setupdatevisiblity]=useState(false)
-  const[formdata,setformdata]=useState({title:"",date:"",description:""})
+  const[formdata,setformdata]=useState({title:"",date:"",description:"",status:"",member:""})
   const[noteid,setnoteid]=useState(null)
   
 
 
   const { note } = props
-  // const[load,setload]=useState({loadcount:0})
+
 
   const navigate = useNavigate()
 
@@ -37,8 +37,7 @@ function Noteitem(props) {
     axios.post(`http://localhost:3001/user/notes/delete/${id}`, {
       withCredentials: true
     }).then((res) => {
-      // setload({loadcount:load.loadcount+1})
-      // window.location.reload(false);
+      
       navigate(0)
 
 
@@ -89,18 +88,7 @@ function Noteitem(props) {
   }
 
 
-  // const delete=(id)=>{
-  //   console.log("ok")
-  //   axios.post(`http://localhost:3001/user/notes/delete/${id}`,{
-  //     withCredentials: true
-  // }).then((res)=>{
-  //   console.log(res.data)
-
-  //   navigate('/')
-  // }).catch((e)=>{
-  //   console.log(e)
-  //   window.alert("error in delete item")
-  // })
+  
 
   return (
     <div className='noteitem' style={{ width: "100%", margin: "10px 0px" }}>
@@ -118,17 +106,25 @@ function Noteitem(props) {
         {note.title}
 
       </div>
-      <div className="date" style={{ width: "100%", padding: "20px 10px" }} >
-        {note.date}
-
+      <div className="date" style={{ width: "100%", padding: "20px 10px" }} >Due date - 
+        {note.date.slice(0,10)}
       </div>
       <div className="decription" style={{ width: "100%", fontSize: "15px", color: "white", textAlign: "justify", padding: "20px 10px" }}>
         {note.description}
 
       </div>
-      <div className="button" style={{ width: "100%", display: "flex", justifyContent: "space-between", padding: "20px 10px" }}>
-        <button style={{ padding: "10px", borderRadius: "2px", backgroundColor: "black", color: "white", border: "none", fontSize: "15px" }} onClick={()=>update(note._id)}>update</button>
-        <button style={{ padding: "10px", borderRadius: "2px", backgroundColor: "black", color: "white", border: "none", fontSize: "15px" }} onClick={() => deleteitem(note._id)} >delete</button>
+      {note.status==='pending'?<div style={{width:'100%',padding:'10px',color:'yellowgreen',fontSize:'15px',fontWeight:'400',display:'flex',justifyContent:'start'}}>Pending</div>:<div style={{width:'100%',padding:'10px',color:'green',fontSize:'15px',fontWeight:'400',display:'flex',justifyContent:'center'}}>Done</div>}
+      <div className="member" style={{width:'100%',padding:'10px',color:'yellowgreen',fontSize:'15px',fontWeight:'400',}}>
+        <p style={{fontSize:'20px',fontWeight:'400',color:'grey'}}>Members</p>
+        {
+          note.members.map((e)=>{
+            return <p style={{backgroundColor:'white',color:'green',padding:'5px',borderRadius:'5px',fontSize:'15px',margin:'10px 10px'}}>{e}</p>
+          })
+        }
+      </div>
+      <div className="button" style={{ width: "100%", display: "flex", justifyContent: "center", padding: "20px 10px" }}>
+        <button style={{ padding: "10px", borderRadius: "5px", backgroundColor: "green", color: "black", border: "none", fontSize: "15px",margin:'0px 10px' }} onClick={()=>update(note._id)}>update<i style={{margin:'0px 5px'}} class='bx bx-edit-alt' ></i></button>
+        <button style={{ padding: "10px", borderRadius: "5px", backgroundColor: "brown", color: "black", border: "none", fontSize: "15px",margin:'0px 10px' }} onClick={() => deleteitem(note._id)} >delete <i style={{margin:'0px 5px'}} class='bx bxs-trash-alt'></i></button>
 
       </div>
 

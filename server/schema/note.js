@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const note = new mongoose.Schema({
+const task = new mongoose.Schema({
           userid:{
                     type:String,
                     required:true,
@@ -17,8 +17,17 @@ const note = new mongoose.Schema({
           date:{
                     type:Date,
                     required:true
+          },
+          status:{
+                    type:String,
+                    required:true
           }
-          
+          ,
+          members:{
+                    type: Array, 
+                    required: true 
+                    
+          }
 })
-const notedata = new mongoose.model('notedata',note)
+const notedata = new mongoose.model('taskt',task)
 module.exports=notedata;

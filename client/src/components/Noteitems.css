@@ -3,8 +3,10 @@
           background-color: rgb(43, 39, 39);
           display: flex;
           flex-direction: column;
-          box-shadow: 0px 0.5px 10px 0px white;
+          box-shadow: rgba(63, 248, 72, 0.12) 0px 2px 4px 0px, rgba(60, 228, 60, 0.32) 0px 2px 16px 0px;
           position:relative;
+          align-items: flex-start;
+
          
 }
 .noteitem .title{
@@ -13,7 +15,7 @@
        
           justify-content: center;
           padding:20px 0px;
-          color:white;
+          color:rgb(12, 134, 22);
           font-size: 15px;
 }
           
@@ -46,4 +48,29 @@
 button:hover{
           background-color: aliceblue;
           color:black
+}
+.noteitem .status-pending{
+          padding: 10px;
+          border-radius: 5px;
+          background-color: rgb(71, 214, 52);
+          color:black;
+          font-weight: 400;
+          width: 100%;
+         
+          justify-self: flex-start;
+          font-size: 15px;
+          
+}
+.noteitem .status-done{
+          padding: 10px;
+          border-radius: 5px;
+          background-color: rgb(10, 104, 96);
+          color:rgb(0, 0, 0);
+          font-weight: 400;
+          width: 100%;
+          display: flex;
+         
+          justify-content: flex-start;
+          font-size: 15px;
+
 }
