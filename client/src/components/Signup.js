@@ -25,7 +25,7 @@ function Signup() {
                     const confirmpassword = formdata.confirmpassword
 
                     const data = {name,email,dob,mobile,password,confirmpassword}
-                    axios.post('http://localhost:3001/user/signup',data).then((res) => {
+                    axios.post('/user/signup',data).then((res) => {
                               console.log(res)
                               navigate('/login')
                               
@@ -54,8 +54,8 @@ function Signup() {
                                         <span>Email : <input type="text" name="email" onChange={change}/> </span>
                                         <span>Dob : <input type="date" name="dob" onChange={change}/> </span>
                                         <span>Mobile : <input type="text" name="mobile" onChange={change}/> </span>
-                                        <span>Password : <input type="text" name="password" onChange={change} /> </span>
-                                        <span>Confirm Password : <input type="text" name="confirmpassword" onChange={change}/> </span>
+                                        <span>Password : <input type="password" name="password" onChange={change} /> </span>
+                                        <span>Confirm Password : <input type="password" name="confirmpassword" onChange={change}/> </span>
                                         <span className='button'><button onClick={handlesubmit}>Sign Up</button></span>
                                         <span className='message'>Have an Account <a href="/login">Log In</a></span>
 
