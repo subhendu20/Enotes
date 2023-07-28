@@ -48,7 +48,7 @@ function App() {
 
   useEffect(()=>{
     
-    axios.get('http://localhost:3001/user/notes/fetchnote', {
+    axios.get('/user/notes/fetchnote', {
       withCredentials: true
   }).then(async (res) => {
       if (res.status === 200) {
@@ -74,7 +74,7 @@ function App() {
   const signout = (e) => {
   
     
-    axios.delete('http://localhost:3001/user/logout', {
+    axios.delete('/user/logout', {
       withCredentials: true
     }).then((res) => {
       console.log("deleting")
