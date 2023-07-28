@@ -18,7 +18,7 @@ function Todo({ title, desc, date, status,id }) {
           const statusupdate = () => {
                     setbuttonstatus('done')
 
-                    axios.post(`http://localhost:3001/user/notes/updatestatus/${id}`, {
+                    axios.post(`/user/notes/updatestatus/${id}`, {
                               withCredentials: true
                     }).then((res) => {
                               console.log(res.data)
