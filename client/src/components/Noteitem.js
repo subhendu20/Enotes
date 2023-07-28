@@ -34,7 +34,7 @@ function Noteitem(props) {
 
 
 
-    axios.post(`http://localhost:3001/user/notes/delete/${id}`, {
+    axios.post(`/user/notes/delete/${id}`, {
       withCredentials: true
     }).then((res) => {
       
@@ -67,7 +67,7 @@ function Noteitem(props) {
 
 
     console.log(formdata)
-    axios.put(`http://localhost:3001/user/notes/update/${noteid}`, formdata, {
+    axios.put(`/user/notes/update/${noteid}`, formdata, {
         withCredentials: true
     }).then((res) => {
         setnoteid(null)
