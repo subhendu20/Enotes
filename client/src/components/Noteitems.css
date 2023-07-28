@@ -9,7 +9,82 @@
 
          
 }
+.noteitem .title{.noteitem{
+          
+          background-color: rgb(43, 39, 39);
+          display: flex;
+          flex-direction: column;
+          box-shadow: rgba(63, 248, 72, 0.12) 0px 2px 4px 0px, rgba(60, 228, 60, 0.32) 0px 2px 16px 0px;
+          position:relative;
+          align-items: flex-start;
+
+         
+}
 .noteitem .title{
+          width: 100%;
+          display: flex;
+       
+          justify-content: center;
+          padding:20px 0px;
+          color:rgb(12, 134, 22);
+          font-size: 15px;
+}
+          
+.noteitem .button{
+          width:100%;
+          display: flex;
+          justify-content: space-between;
+}
+
+.noteitem .date{
+          width: 100%;
+        
+          display: flex;
+          
+          font-size: 15px;
+          color:grey;
+          padding:20px 0px;
+          
+}
+.noteitem .description{
+          width:100%;
+          padding:20px 10px;
+          display: flex;
+          justify-items: center;
+          text-align:justify;
+          color:white;
+          font-size: 10px;
+          
+}
+button:hover{
+          background-color: aliceblue;
+          color:black
+}
+.noteitem .status-pending{
+          padding: 10px;
+          border-radius: 5px;
+          background-color: rgb(71, 214, 52);
+          color:black;
+          font-weight: 400;
+          width: 100%;
+         
+          justify-self: flex-start;
+          font-size: 15px;
+          
+}
+.noteitem .status-done{
+          padding: 10px;
+          border-radius: 5px;
+          background-color: rgb(10, 104, 96);
+          color:rgb(0, 0, 0);
+          font-weight: 400;
+          width: 100%;
+          display: flex;
+         
+          justify-content: flex-start;
+          font-size: 15px;
+
+}
           width: 100%;
           display: flex;
        
