@@ -22,7 +22,7 @@ function Login() {
                     const confirmpassword = formdata.confirmpassword
 
                     const data = { name, email, dob, mobile, password, confirmpassword }
-                    axios.post('http://localhost:3001/user/login', data,{
+                    axios.post('/user/login', data,{
                               headers: {
                                 'Content-Type': 'application/json'
                               },
