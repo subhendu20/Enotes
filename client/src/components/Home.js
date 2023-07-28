@@ -18,7 +18,7 @@ function Home() {
     //--------------------------------------fetch name list----------------------------//
     const getnamelist =()=> {
 
-        axios.get('http://localhost:3001/user/getallnames', {
+        axios.get('/user/getallnames', {
             withCredentials: true
 
         }).then(async (res) => {
@@ -34,7 +34,7 @@ function Home() {
     //--------------------------------------fetch tasks---------------------------------//
     const getapi =()=> {
 
-        axios.get('http://localhost:3001/user/notes/fetchnote', {
+        axios.get('/user/notes/fetchnote', {
             withCredentials: true
         }).then(async (res) => {
             if (res.status === 200) {
@@ -80,7 +80,7 @@ function Home() {
 
 
         console.log(dataapi)
-        axios.post('http://localhost:3001/user/notes/postnote', dataapi, {
+        axios.post('/user/notes/postnote', dataapi, {
             withCredentials: true
         }).then((res) => {
             console.log(res)
@@ -91,7 +91,7 @@ function Home() {
 
         ).catch(async (e) => {
             if (e.response.status === 400) {
-                await window.alert("You Have to log in to store your note")
+                await window.alert("You Have to log in first to add your task")
                 navigate('/login')
 
 
@@ -114,7 +114,7 @@ function Home() {
 
                     <span>Title :<input type="text" name='title' placeholder='Title' onChange={change} /></span>
                     <span>Due Date :<input type='date' name="date" placeholder='Date' value="2017-06-01" onChange={change} /></span>
-                    <span>Body :<input type='text' name='description' placeholder='Description' onChange={change} /></span>
+                    <span>Description :<input type='text' name='description' placeholder='Description' onChange={change} /></span>
                     <span> Select members: <FormControl className='span-formcontrol ' fullWidth id="standard-basic" color="primary"
          autoComplete="off" >
                                                             <InputLabel>Select members</InputLabel>
@@ -147,7 +147,7 @@ function Home() {
 
             </div>
            { !api.loading && <div className="notes">
-                <div className="title"><b>Store your Notes</b> </div>
+                <div className="title"><b>Your tasks</b> </div>
                 
                 {
                     !api.loading && <div className="note-items">
